@@ -27,12 +27,10 @@ function createCartItem(product) {
     const inputQuanttity = document.createElement("input")
     const btnIncrease = document.createElement("button")
     const btnDecrease = document.createElement("button")
-
     inputQuanttity.setAttribute("type", "number")
     inputQuanttity.setAttribute("value", product.quantity)
     btnIncrease.innerHTML = `<i class="fas fa-plus"></i>`
     btnDecrease.innerHTML = `<i class="fas fa-minus"></i>`
-
     btnIncrease.addEventListener("click", () => {
         product.quantity++;
   inputQuanttity.setAttribute("value", product.quantity);
@@ -63,14 +61,11 @@ function createCartItem(product) {
         delete APP.cart[product.id]
         console.log(APP.cart)
     }
-
     if(total_price == 0) {
         APP.elements["divReceit"].innerHTML = `
-            <p>Your shopping cart is empty!</p>
-        `
+            <p>Your shopping cart is empty!</p>`
     }
     })
-
     divCartItem.classList.add("cart_item")
     divCartItem.innerHTML = `
         <div class="thumbnail"><img src="${product.image}" /></div>
@@ -83,7 +78,6 @@ function createCartItem(product) {
    
     return divCartItem
 }
-
 function createProductTile(product) {
     const divProductTile = document.createElement("div")
     divProductTile.classList.add("product_tile")
@@ -92,15 +86,10 @@ function createProductTile(product) {
         <div class="product_image">
             <img src="${product.image}" alt="Image of ${product.title}"> 
         </div>
-        <div>Price: $${product.price.toFixed(2)}<div>
-    `
-
+        <div>Price: $${product.price.toFixed(2)}<div>`
     const btnAddToCart = document.createElement("button")
     btnAddToCart.innerHTML = `<i class="fas fa-cart-plus"></i> Add to cart`
     divProductTile.append(btnAddToCart)
-
-   
-
     btnAddToCart.addEventListener("click", () => {
        if(APP.cart[product.id] == undefined) {
             APP.cart[product.id] = {
@@ -116,13 +105,9 @@ function createProductTile(product) {
        const result = countAndCalculate()
        const spanItemsCount = document.querySelector("#items_count")
        spanItemsCount.innerHTML = result.no_items
-       
     })
-
     return divProductTile
 }
-
-
 function createCartModal() {
     const divOverlay = document.createElement("div")
     divOverlay.classList.add("overlay")
@@ -154,17 +139,11 @@ function createCartModal() {
     pBasePrice.innerHTML = `Price without tax: $${result.base_price.toFixed(2)}`
     pTax.innerHTML = `Price with tax: $${(result.tax*100).toFixed(2)}%`
     pTotalPrice.innerHTML = `Total Price: $${result.total_price.toFixed(2)}`
-
     divReceit.append(pBasePrice)
     divReceit.append(pTax)
     divReceit.append(pTotalPrice)
     divCartContent.append(divReceit)
-
-
-
-   
     return divOverlay
-    
 }
 
 const btnShowCart = document.querySelector("#show_cart");
